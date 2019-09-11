@@ -1,0 +1,18 @@
+./filtered/temp_dir/reads_of_insert_fixed_r1.fa
+cat /Users/wuyibo/Documents/Research/data/reads_of_insert.fasta | gmap -D /usr/local/share/ -d hg19_ensemble --no-chimeras --cross-species --expand-offsets 1 -B 5 -K 8000 -f samse -n 1 -t 1 > ./filtered/temp_dir/reads_of_insert_r1.sam 2> ./filtered/temp_dir/reads_of_insert_r1.log
+python /Users/wuyibo/Documents/Research/tools/comp_bio-tapis-44cc05ebc78c/scripts/convertSam.py ./filtered/temp_dir/reads_of_insert_r1.sam
+rm ./filtered/temp_dir/reads_of_insert_r1.sam
+rm ./filtered/temp_dir/reads_of_insert_r1.bam.bai
+python /Users/wuyibo/Documents/Research/tools/comp_bio-tapis-44cc05ebc78c/scripts/cleanAlignments.py -e 0.100000 -t 0 -f ./filtered/temp_dir/reads_of_insert_fixed_r1.fa -j ./filtered/temp_dir/reads_of_insert_junctions_r1.fa -s ./filtered/temp_dir/reads_of_insert_fixed_r1.bam -u ./filtered/temp_dir/reads_of_insert_unaligned_r1.fa -r ./filtered/temp_dir/reads_of_insert_filtered_r1.fa /Users/wuyibo/Documents/Research/data/Homo_sapiens.GRCh37.dna_sm.primary_assembly.fa ./filtered/temp_dir/reads_of_insert_r1.bam
+python /Users/wuyibo/Documents/Research/tools/comp_bio-tapis-44cc05ebc78c/scripts/cleanAlignments.py -e 0.100000 -t 0 -f ./filtered/temp_dir/reads_of_insert_fixed_r1.fa -j ./filtered/temp_dir/reads_of_insert_junctions_r1.fa -s ./filtered/temp_dir/reads_of_insert_fixed_r1.bam -u ./filtered/temp_dir/reads_of_insert_unaligned_r1.fa -r ./filtered/temp_dir/reads_of_insert_filtered_r1.fa /Users/wuyibo/Documents/Research/data/Homo_sapiens.GRCh37.dna_sm.primary_assembly.fa ./filtered/temp_dir/reads_of_insert_r1.bam -a 10
+samtools merge ./filtered/aligned.bam ./filtered/temp_dir/reads_of_insert_fixed_r*.bam
+
+
+python /Users/wuyibo/Documents/Research/tools/comp_bio-tapis-44cc05ebc78c/scripts/cleanAligndir/reads_of_insert_junctions_r1.fa -s ./filtered/temp_dir/reads_of_insert_fixed_r1.bam -u ./filtered/temp_diuyibo/Documents/Research/data/Homo_sapiens.GRCh37.dna_sm.primary_assembly.fa ./filtered/temp_dir/reads_of_insert_r1.bam
+Traceback (most recent call last):
+  File "/Users/wuyibo/Documents/Research/tools/comp_bio-tapis-44cc05ebc78c/scripts/cleanAlignments.py", line 342, in <module>
+    pair = '%s-%s' % (revComp(p3),revComp(p5))
+  File "/Users/wuyibo/Documents/Research/tools/comp_bio-tapis-44cc05ebc78c/scripts/cleanAlignments.py", line 109, in revComp
+    return ''.join([revCDict[x] for x in s])[::-1]
+KeyError: 'n'
+(base) bash-3.2$ 

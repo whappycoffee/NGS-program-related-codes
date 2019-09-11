@@ -1,0 +1,12 @@
+library("ALL")
+library("hgu95av2.db")
+library("GO.db")
+library("annotate")
+library("genefilter")
+library("GOstats")
+library("RColorBrewer")
+library("xtable")
+library("Rgraphviz")
+data(ALL, package="ALL")
+subsetType <- "ALL1/AF4"
+Bcell <- grep("^B", as.character(ALL$BT))
